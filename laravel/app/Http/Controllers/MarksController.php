@@ -11,18 +11,24 @@ class MarksController extends Controller
 
 public function postSaveMarks(Request $request){
 
-    $marksheet = new MarkSheet();
-    $marksheet->subject= $request['subject'];
-    $marksheet->term= $request['term'];
-    $marksheet->year= $request['year'];
-    $marksheet->class_name= $request['classname'];
-    $marksheet->marks= $request['1'];
-    $marksheet->rank= $request['3'];
+    for($i=0; $i<20; $i=$i+4){
+        $marksheet = new MarkSheet();
+        $marksheet->subject= $request['subject'];
+        $marksheet->term= $request['term'];
+        $marksheet->year= $request['year'];
+        $marksheet->class_name= $request['classname'];
+        $marksheet->marks= $request[$i+1];
+        $marksheet->rank= $request[$i+3];
 
-    $student = \App\Student::where('id',$request['0'])->first();
+        $student = \App\Student::where('id',$request[$i])->first();
 
-    $marksheet->save();
+        $student->marksheets()->save($marksheet);
+
+
+    }
     return redirect()->back();
+
+
 
 }
 

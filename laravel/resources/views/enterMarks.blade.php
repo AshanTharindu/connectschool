@@ -84,69 +84,25 @@
                                     </thead>
                                     <tbody>
 
+                                    <?php for($i=0; $i<20; $i=$i+4){?>
                                     <tr  role="row" class="odd">
-                                        <td> <select class="form-control" id="0" name="0">
-                                                <?php
+
+                                            <td> <select class="form-control" id="<?php echo $i; ?>" name="<?php echo $i; ?>">
+                                                    <?php
                                                     $students = \App\Student::all();
                                                     foreach($students as $student){?>
 
-                                                <option><?php echo $student->id;?></option>
-                                                <?php }?>
-                                            </select> </td>
-                                        <td > <input type="text" class="sorting_1" id="1" name="1" /> </td>
-                                        <td id="2" name="2" ></td>
-                                        <input type="hidden" id="3" name="3" value="">
+                                                    <option><?php echo $student->id;?></option>
+                                                    <?php }?>
 
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td> <select class="form-control" id="4" name="4">
-                                                <?php
-                                                $students = \App\Student::all();
-                                                foreach($students as $student){?>
+                                                </select> </td>
+                                            <td > <input type="text" class="sorting_1" id="<?php echo $i+1; ?>" name="<?php echo $i+1; ?>" /> </td>
+                                            <td id="<?php echo $i+2; ?>"></td>
+                                            <input type="hidden" id="<?php echo $i+3; ?>" name="<?php echo $i+3; ?>" value="">
 
-                                                <option><?php echo $student->id;?></option>
-                                                <?php }?>
-                                            </select> </td>
-                                        <td > <input type="text" class="sorting_1" id="4" name="4" /> </td>
-                                        <td id="4"> </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td> <select class="form-control">
-                                                <?php
-                                                $students = \App\Student::all();
-                                                foreach($students as $student){?>
+                                    </tr><?php }?>
 
-                                                <option><?php echo $student->id;?></option>
-                                                <?php }?>
-                                            </select> </td>
-                                        <td> <input type="text" class="sorting_1" id="5" /> </td>
-                                        <td id="6" ></td>
 
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td> <select class="form-control">
-                                                <?php
-                                                $students = \App\Student::all();
-                                                foreach($students as $student){?>
-
-                                                <option><?php echo $student->id;?></option>
-                                                <?php }?>
-                                            </select> </td>
-                                        <td> <input type="text" class="sorting_1" id="7" /> </td>
-                                        <td id="8"> </td>
-                                    </tr>
-                                    <tr role="row" class="odd">
-                                        <td> <select class="form-control">
-                                                <?php
-                                                $students = \App\Student::all();
-                                                foreach($students as $student){?>
-
-                                                <option><?php echo $student->id;?></option>
-                                                <?php }?>
-                                            </select> </td>
-                                        <td> <input type="text" class="sorting_1" id="9" /> </td>
-                                        <td id="10"> </td>
-                                    </tr>
 
 
                                     </tbody>
@@ -168,16 +124,12 @@
                         <div class="table-responsive">
                             <table class="table">
                                 <tbody><tr>
-                                    <th style="width:50%">Total</th>
-                                    <td>653</td>
+                                    <th style="width:50%">No. of Students</th>
+                                    <td>20</td>
                                 </tr>
                                 <tr>
-                                    <th>Average</th>
+                                    <th>Subject Average</th>
                                     <td>59</td>
-                                </tr>
-                                <tr>
-                                    <th>class Average</th>
-                                    <td>41</td>
                                 </tr>
 
                                 </tbody></table>
@@ -203,38 +155,44 @@
     <script>
         function findRank(){
 
-            var sname = document.getElementById("0");
-            var sid = sname.options[sname.selectedIndex].value;
-            console.log(sid);
+
+
+            var rawmarks =[];
+            for(var j= 1; j<21; j=j+4){
+                rawmarks.push((document.getElementById(j.toString()).value));
+                console.log(document.getElementById(j.toString()).value);
+            }
+
+
             var inputmarks =[];
-            for(var j= 1; j<11; j=j+2){
-                if((document.getElementById(j).value) in inputmarks){
+            for(var j= 0; j<5; j=j+1){
+                console.log(j);
+                if(rawmarks[j] in inputmarks){
                     console.log("yes");
 
                 }else{
-                    inputmarks.push((document.getElementById(j).value));
+                    inputmarks.push(rawmarks[j]);
                 }
 
             }
-            var rawmarks =[];
-            for(var j= 1; j<11; j=j+2){
-                rawmarks.push((document.getElementById(j).value));
-            }
 
 
 
-            var markssorted = inputmarks.sort(function(a, b){return a-b});
+
+            var markssorted=inputmarks.sort(function(a, b){return a-b});
 
 
 
-            for(var i = 1; i<=rawmarks.length;i++){
-                console.log(rawmarks[i-1]);
-                var rank = markssorted.length-markssorted.indexOf(rawmarks[i-1]);
+            for(var i = 0; i<5;i++){
+               // console.log(inputmarks[i]);
+                //console.log(inputmarks.indexOf(rawmarks[i]));
+                var rank = markssorted.length-markssorted.indexOf(rawmarks[i]);
                 console.log(rank);
-               // document.getElementById((i*2).toString()).innerHTML = rank.toString();
+
+                document.getElementById((i*4+2).toString()).innerHTML = rank.toString();
+                document.getElementById((i*4+3).toString()).value = rank.toString();
             }
-            document.getElementById("2").innerHTML ="3";
-            document.getElementById("3").value = "3";
+
 
 
 
