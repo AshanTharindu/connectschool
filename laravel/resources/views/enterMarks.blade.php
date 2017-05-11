@@ -63,6 +63,10 @@
                     <option>History</option>
                     <option>Art</option>
                     <option>Commerce</option>
+                    <option>Sinhala</option>
+                    <option>English</option>
+                    <option>Religion</option>
+                    <option>Music</option>
                 </select>
             </div>
 

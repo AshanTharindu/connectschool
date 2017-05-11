@@ -30,7 +30,7 @@
                     <i class="glyphicon glyphicon-knight"></i> <span>Marks</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         <li><a href="{{route('marksView')}}"><i class="fa fa-circle-o"></i> View Marks</a></li>
-                        @if(Auth::user()->user_type == "class_teacher")
+                        @if(Auth::user()->user_type == "class_teacher" or "admin")
                             <li><a href="{{route('enterMarks')}}"><i class="fa fa-circle-o"></i> Enter Marks</a></li>
                         @endif
                     </ul>

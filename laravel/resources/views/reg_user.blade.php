@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="form-group">
                                         <label for="exampleInputEmail1">Class</label>
-                                        <select class="form-control" id="classname" name="classname">
+                                        <select class="form-control" id="class_name" name="class_name">
                                             <option>A</option>
                                             <option>B</option>
                                             <option>C</option>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Parent id</label>
-                                    <select class="form-control" id="parentid" name="parentid">
+                                    <select class="form-control" id="guardian_id" name="guardian_id">
                                         <?php
                                             $guardians = \App\Guardian::all();
                                             foreach($guardians as $guardian){?>

@@ -12,29 +12,54 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <h4>Year</h4>
-            <select class="form-control">
-                <option>2016</option>
-                <option>2015</option>
-                <option>2014</option>
-                <option>2013</option>
-                <option>2012</option>
-            </select>
+            <div class="callout callout-info">
+                <h4>Select Grade and Term</h4>
+                <p>Then click done</p>
+            </div>
         </div>
-
-        <div class="col-md-4">
-            <h4>Term</h4>
-            <select class="form-control">
-                <option>1st</option>
-                <option>2nd</option>
-                <option>3rd</option>
-
-            </select>
-        </div>
-
-
     </div>
+    <form action="{{route('fetchmarks')}}" method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Grade</h4>
+                <select class="form-control" id="grade" name="grade">
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                </select>
+            </div>
 
+            <div class="col-md-4">
+                <h4>Term</h4>
+                <select class="form-control" id="term" name="term">
+                    <option>1st</option>
+                    <option>2nd</option>
+                    <option>3rd</option>
+
+                </select>
+            </div>
+
+
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-block btn-primary">Done</button>
+                <input type="hidden" name = "_token" value = "{{Session::token()}}">
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <br>
+    <br>
+    <br>
     <div class="col-md-6">
         <div class="box">
             <div class="box-header">
@@ -48,52 +73,18 @@
                                 <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Subject</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Marks</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Rank</th>
                                 </thead>
                                 <tbody>
-                                <tr role="row" class="odd">
-                                    <td class="sorting_1">Maths</td>
-                                    <td>59</td>
-                                    <td>17</td>
+                                @foreach($marksheets as $marksheet)
 
-                                </tr><tr role="row" class="even">
-                                    <td class="sorting_1">Religion</td>
-                                    <td>59</td>
-                                    <td>17</td>
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1">{{$marksheet->subject}}</td>
+                                        <td>{{$marksheet->marks}}</td>
+                                        <td>{{$marksheet->rank}}</td>
 
-                                </tr><tr role="row" class="odd">
-                                    <td class="sorting_1">commerce</td>
-                                    <td>59</td>
-                                    <td>17</td>
+                                    </tr>
 
-                                </tr><tr role="row" class="even">
-                                    <td class="sorting_1">Music</td>
-                                    <td>59</td>
-                                    <td>17</td>
+                                @endforeach
 
-                                </tr><tr role="row" class="odd">
-                                    <td class="sorting_1">Art</td>
-                                    <td>59</td>
-                                    <td>17</td>
-
-                                </tr><tr role="row" class="even">
-                                    <td class="sorting_1">History</td>
-                                    <td>59</td>
-                                    <td>17</td>
-
-                                </tr><tr role="row" class="odd">
-                                    <td class="sorting_1">Science</td>
-                                    <td>59</td>
-                                    <td>17</td>
-
-                                </tr><tr role="row" class="even">
-                                    <td class="sorting_1">English</td>
-                                    <td>59</td>
-                                    <td>17</td>
-
-                                </tr><tr role="row" class="odd">
-                                    <td class="sorting_1">Sinhala</td>
-                                    <td>59</td>
-                                    <td>17</td>
-
-                                </tr></tbody>
+                                </tbody>
 
                             </table>
                         </div>
@@ -111,11 +102,19 @@
                         <table class="table">
                             <tbody><tr>
                                 <th style="width:50%">Total</th>
-                                <td>653</td>
+                                <td>@php
+                                    $total = 0;
+                                    $subjects = 1;
+                                    foreach($marksheets as $marksheet){
+                                        $total += $marksheet->marks;
+                                        $subjects++;
+                                    }
+                                    echo $total
+                                    @endphp</td>
                             </tr>
                             <tr>
                                 <th>Average</th>
-                                <td>59</td>
+                                <td>{{$total/$subjects}}</td>
                             </tr>
                             <tr>
                                 <th>class Average</th>

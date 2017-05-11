@@ -31,15 +31,16 @@ class UserController extends Controller{
             'email' => 'required|email|unique:users',
             'first_name'=> 'required|max:120',
             'last_name'=> 'required|max:120',
-            'class_name'=> 'required|max:3',
             'password' => 'required|min:4'
         ]);
+
 
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
         $email = $request['email'];
         $password = bcrypt($request['password']);
         $class_name = $request['class_name'];
+        $grade = $request['grade'];
 
         $user = new User();
         $user->email  = $email;
@@ -50,13 +51,14 @@ class UserController extends Controller{
         $student = new Student();
         $student->first_name = $first_name;
         $student->last_name = $last_name;
+        $student->grade = $grade;
         $student->class_name = $class_name;
-        $student->parent_id= 1;
+        $suser= User::where('email',$email)->first();
+        $student->user_id=$suser->id ;
+        $guardian = Guardian::where('id',$request['guardian_id'])->first();
+        $guardian->students()->save($student);
 
-        $student->save();
-
-
-        return redirect()->route('dashboard');
+        return redirect()->back();
 
 
 
@@ -90,7 +92,7 @@ class UserController extends Controller{
         $admin->save();
 
 
-        return redirect()->route('dashboard');
+        return redirect()->back();
 
     }
 
@@ -125,7 +127,7 @@ class UserController extends Controller{
         $class_teacher->save();
 
 
-        return redirect()->route('dashboard');
+        return redirect()->back();
 
     }
 
@@ -150,7 +152,7 @@ class UserController extends Controller{
 
         $subect_teacher->save();
 
-        return redirect()->route('dashboard');
+        return redirect()->back();
     }
 
     public function parentPostSignUp(Request $request){

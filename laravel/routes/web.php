@@ -112,6 +112,14 @@ Route::group(['middleware' => ['web']], function(){
         return view('marksView');
     })->name('marksView');
 
+    Route::get('/marksView',[
+
+        'uses' => 'MarksController@getViewMarks',
+        'as' => 'marksView'
+
+
+    ]);
+
     Route::get('/enterMarks', function () {
         return view('enterMarks');
     })->name('enterMarks');
@@ -153,6 +161,14 @@ Route::group(['middleware' => ['web']], function(){
         'as' => 'savemarks'
 
     ]);
+
+    //fetch marks to view
+    Route::post('/fetchmarks', [
+        'uses' => 'MarksController@postFetchMarks',
+        'as' => 'fetchmarks'
+
+    ]);
+
 
 
 });

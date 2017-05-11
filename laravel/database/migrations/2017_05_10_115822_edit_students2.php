@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class EditStudents extends Migration
+class EditStudents2 extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class EditStudents extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->integer('user_id');
+            $table->renameColumn('parent_id', 'guardian_id');
         });
     }
 
