@@ -88,7 +88,7 @@
                                     </thead>
                                     <tbody>
 
-                                    <?php for($i=0; $i<20; $i=$i+4){?>
+                                    <?php for($i=0; $i<80; $i=$i+4){?>
                                     <tr  role="row" class="odd">
 
                                             <td> <select class="form-control" id="<?php echo $i; ?>" name="<?php echo $i; ?>">
@@ -158,51 +158,49 @@
     </form>
     <script>
         function findRank(){
-
-
-
+            //enterd marks will be added to the array
             var rawmarks =[];
-            for(var j= 1; j<21; j=j+4){
+            var dupmarks=[];
+
+            for(var j= 1; j<81; j=j+4){
                 rawmarks.push((document.getElementById(j.toString()).value));
-                console.log(document.getElementById(j.toString()).value);
+                dupmarks.push((document.getElementById(j.toString()).value));
             }
 
 
-            var inputmarks =[];
-            for(var j= 0; j<5; j=j+1){
-                console.log(j);
-                if(rawmarks[j] in inputmarks){
-                    console.log("yes");
 
+            var ranklist=[];
+
+            var markssorted= rawmarks.sort(function(a, b){return a-b});
+            //processed data will added to the interface
+
+            var rank=0;
+            var count=0;
+            var pre = -1;
+            for(var i = dupmarks.length-1; i>-1;i--){
+                if( pre==markssorted[i]){
+                    ranklist[i]= rank;
                 }else{
-                    inputmarks.push(rawmarks[j]);
+                    rank = markssorted.length-i;
+                    ranklist[i]= rank;
                 }
-
-            }
-
-
-
-
-            var markssorted=inputmarks.sort(function(a, b){return a-b});
-
-
-
-            for(var i = 0; i<5;i++){
-               // console.log(inputmarks[i]);
-                //console.log(inputmarks.indexOf(rawmarks[i]));
-                var rank = markssorted.length-markssorted.indexOf(rawmarks[i]);
+                pre = markssorted[i];
                 console.log(rank);
-
-                document.getElementById((i*4+2).toString()).innerHTML = rank.toString();
-                document.getElementById((i*4+3).toString()).value = rank.toString();
             }
 
+            for(var i = 0; i<dupmarks.length;i++){
+
+                    var value = markssorted.indexOf(dupmarks[i]);
+                    console.log(dupmarks[i]);
+                    console.log(ranklist[value]);
+                    document.getElementById((i*4+2).toString()).innerHTML = ranklist[value].toString();
+                    document.getElementById((i*4+3).toString()).value = ranklist[value].toString();
 
 
-
+            }
         }
-
-
     </script>
 
 @endsection
+
+

@@ -103,10 +103,13 @@ Route::group(['middleware' => ['web']], function(){
         'as' => 'sports'
 
     ]);
+    Route::get('/clubs',[
 
-    Route::get('/clubs', function () {
-        return view('clubs');
-    })->name('clubs');
+        'uses' => 'PostController@showc',
+        'as' => 'clubs'
+
+    ]);
+
 
     Route::get('/marksView', function () {
         return view('marksView');
@@ -152,6 +155,12 @@ Route::group(['middleware' => ['web']], function(){
     Route::post('/addPost', [
         'uses' => 'PostController@postCreatePost',
         'as' => 'addPost'
+
+    ]);
+    //create club post
+    Route::post('/addPostClub', [
+        'uses' => 'PostController@postCreateClubPost',
+        'as' => 'addPostClub'
 
     ]);
 

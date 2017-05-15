@@ -232,25 +232,25 @@
                         <form action="{{route('captainsignup')}}" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="first name">
-
+                                    <label for="exampleInputEmail1">Student ID</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="student_id" name="student_id">
+                                                @php $student = \App\Student::all(); @endphp
+                                                @foreach($student as $student)
+                                                    <option>{{$student->id}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Last name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last name">
+                                    <label for="exampleInputEmail1">Year</label>
+                                    <input type="text" class="form-control" id="year" name="year" placeholder="year">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Sport</label>
                                     <input type="text" class="form-control" id="sport" name="sport" placeholder="sport">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                 </div>
 
                             </div>
@@ -274,25 +274,25 @@
                         <form action="{{route('chpersonsignup')}}" method="post">
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="first name">
-
+                                    <label for="exampleInputEmail1">Student ID</label>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="student_id" name="student_id">
+                                                @php $student = \App\Student::all(); @endphp
+                                                @foreach($student as $student)
+                                                    <option>{{$student->id}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Last name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last name">
+                                    <label for="exampleInputEmail1">Year</label>
+                                    <input type="text" class="form-control" id="year" name="year" placeholder="year">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Club</label>
                                     <input type="text" class="form-control" id="club" name="club" placeholder="club">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                 </div>
 
                             </div>

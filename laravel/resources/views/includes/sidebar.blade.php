@@ -43,18 +43,23 @@
                     <i class="glyphicon glyphicon-knight"></i> <span>Sport</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         <li><a href="{{route('sports')}}"><i class="fa fa-circle-o"></i> News</a></li>
-                        @if(Auth::user()->user_type == "student")
+                        @if(Auth::user()->user_type == "student" or "captain")
                             <li><a href="{{route('spost')}}"><i class="fa fa-circle-o"></i> Add Event</a></li>
                         @endif
                     </ul>
                 </a>
             </li>
+
             <li class="active treeview">
-                <a href="{{route('clubs')}}">
-                    <i class="glyphicon glyphicon-knight"></i> <span>Clubs and Societies</span>
+                <a href="#">
+                    <i class="glyphicon glyphicon-knight"></i>
+                    <span>Clubs and Societies</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         <li><a href="{{route('clubs')}}"><i class="fa fa-circle-o"></i> News</a></li>
-                        @if(Auth::user()->user_type == "student")
+                        @if(Auth::user()->user_type == "chperson")
                             <li><a href="{{route('cpost')}}"><i class="fa fa-circle-o"></i> Add Event</a></li>
                         @endif
                     </ul>

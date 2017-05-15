@@ -102,19 +102,26 @@
                         <table class="table">
                             <tbody><tr>
                                 <th style="width:50%">Total</th>
-                                <td>@php
-                                    $total = 0;
-                                    $subjects = 1;
-                                    foreach($marksheets as $marksheet){
-                                        $total += $marksheet->marks;
-                                        $subjects++;
-                                    }
-                                    echo $total
-                                    @endphp</td>
+                                @php
+                                $total = 0;
+                                $subjects =0;
+                                $average = 0;
+                                foreach($marksheets as $marksheet){
+                                $total += $marksheet->marks;
+                                $subjects++;
+                                }
+
+                                if($subjects>0){
+                                    $average = $total/$subjects;
+                                }
+                                @endphp
+                                <td>{{$total}}</td>
                             </tr>
                             <tr>
                                 <th>Average</th>
-                                <td>{{$total/$subjects}}</td>
+
+
+                                <td>{{$average}}</td>
                             </tr>
                             <tr>
                                 <th>class Average</th>

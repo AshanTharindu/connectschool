@@ -11,41 +11,38 @@
 
 @section('content')
 
-    <div class="col-md-6">
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <i class="fa fa-text-width"></i>
 
-                <h3 class="box-title">Science Day</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body clearfix">
-                <blockquote class="pull-right">
-                    <p>This post is added by chaiman of the sciene societyhis post is added by chaiman of the sciene societyhis post is added by chaiman of the sciene society</p>
-                    <small>Supun Madusanka<cite title="Source Title"></cite></small>
-                </blockquote>
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </div>
 
-    <div class="col-md-6">
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <i class="fa fa-text-width"></i>
+        @foreach($posts as $post)
 
-                <h3 class="box-title">Quiz</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <i class="fa fa-text-width"></i>
+
+                            <h3 class="box-title">Science Day</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body clearfix">
+                            <blockquote class="pull-right">
+                                <p>{{$post->body}}</p>
+                                @php
+                                    $chperson = \App\Chperson::where('id',$post->chperson_id)->first();
+                                    $student = \App\Student:: where('user_id',$chperson->user_id)->first();
+                                    $name = $student->first_name." ".$student->last_name;
+                                @endphp
+                                <small>{{$name}}<cite title="Source Title"></cite></small>
+                            </blockquote>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
             </div>
-            <!-- /.box-header -->
-            <div class="box-body clearfix">
-                <blockquote class="pull-right">
-                    <p>This post is added by chaiman of the sciene societyhis post is added by chaiman of the sciene societyhis post is added by chaiman of the sciene society</p>
-                    <small>Supun Madusanka<cite title="Source Title"></cite></small>
-                </blockquote>
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </div>
+
+
+    @endforeach
+
 @endsection

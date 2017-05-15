@@ -10,7 +10,5 @@ class Post extends Model
         return $this->belongsTo('App\Captain');
     }
 
-    public function chperson(){
-        return $this->belongsTo('App\Chperson');
-    }
+
 }

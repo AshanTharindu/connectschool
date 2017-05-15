@@ -178,51 +178,41 @@ class UserController extends Controller{
     }
 
     public function captainPostSignUp(Request $request){
-        $first_name = $request['first_name'];
-        $last_name = $request['last_name'];
-        $email = $request['email'];
-        $password = bcrypt($request['password']);
+        $student_id = $request['student_id'];
+        $year = $request['year'];
         $sport = $request['sport'];
+        $student = Student::where('id',$student_id)->first();
+        $user_id =$student->user_id;
+        $user = User::where('id',$user_id)->first();
+         $user->user_type = "capatain";
+         $user->save();
 
-        $user = new User();
-        $user->email  = $email;
-        $user->password = $password;
-        $user->user_type = "capatain";
-        $user->save();
+         $captain = new Captain();
+         $captain->sport= $sport;
+         $captain->user_id = $user->id;
+         $captain->year = $year;
+         $captain->save();
 
-        $captain = new Captain();
-        $captain->first_name= $first_name;
-        $captain->last_name= $last_name;
-        $captain->email  = $email;
-        $captain->password = $password;
-        $captain->sport= $sport;
-        $captain->save();
-
-        return redirect()->back();
+         return redirect()->back();
 
     }
 
     public function chpersonPostSignUp(Request $request)
     {
-        $first_name = $request['first_name'];
-        $last_name = $request['last_name'];
-        $email = $request['email'];
-        $password = bcrypt($request['password']);
+        $student_id = $request['student_id'];
+        $year = $request['year'];
         $club = $request['club'];
-
-        $user = new User();
-        $user->email = $email;
-        $user->password = $password;
+        $student = Student::where('id',$student_id)->first();
+        $user_id =$student->user_id;
+        $user = User::where('id',$user_id)->first();
         $user->user_type = "chperson";
         $user->save();
 
-        $cperson = new Chperson();
-        $cperson->first_name= $first_name;
-        $cperson->last_name= $last_name;
-        $cperson->email  = $email;
-        $cperson->password = $password;
-        $cperson->club= $club;
-        $cperson->save();
+        $chperson = new Chperson();
+        $chperson->club= $club;
+        $chperson->year= $year;
+        $chperson->user_id = $user_id;
+        $chperson->save();
 
         return redirect()->back();
 
