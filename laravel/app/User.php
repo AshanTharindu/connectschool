@@ -9,6 +9,11 @@ class User extends Model implements Authenticatable{
 
     use \Illuminate\Auth\Authenticatable;
 
+    public function messages(){
+
+        return $this->hasMany('App\Message');
+    }
+
 
 
 }

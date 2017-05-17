@@ -132,6 +132,15 @@ Route::group(['middleware' => ['web']], function(){
 
     ]);
 
+    //send messages
+    Route::post('/sendMessage', [
+        'uses' => 'MessageController@postSendMessage',
+        'as' => 'sendMessage'
+
+    ]);
+
+
+
     Route::get('/reg_user', function () {
         return view('reg_user');
     })->name('reg_user');

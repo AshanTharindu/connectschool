@@ -70,7 +70,7 @@
                     <i class="glyphicon glyphicon-knight"></i> <span>Sport</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         <li><a href="{{route('sports')}}"><i class="fa fa-circle-o"></i> News</a></li>
-                        @if(Auth::user()->user_type == "captain")
+                        @if(Auth::user()->user_type == "capatain")
                             <li><a href="{{route('spost')}}"><i class="fa fa-circle-o"></i> Add Event</a></li>
                         @endif
                     </ul>
