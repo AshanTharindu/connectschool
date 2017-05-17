@@ -29,8 +29,8 @@ class UserController extends Controller{
 //        validation
         $this->validate($request,[
             'email' => 'required|email|unique:users',
-            'first_name'=> 'required|max:120',
-            'last_name'=> 'required|max:120',
+            'first_name'=> 'required|alpha|max:120',
+            'last_name'=> 'required|alpha|max:120',
             'password' => 'required|min:4'
         ]);
 
@@ -70,8 +70,8 @@ class UserController extends Controller{
 
         $this->validate($request,[
             'email' => 'required|email|unique:users',
-            'first_name'=> 'required|max:120',
-            'last_name'=> 'required|max:120',
+            'first_name'=> 'required|alpha|max:120',
+            'last_name'=> 'required|alpha|max:120',
             'password' => 'required|min:4'
         ]);
 
@@ -101,9 +101,8 @@ class UserController extends Controller{
 
         $this->validate($request,[
             'email' => 'required|email|unique:users',
-            'first_name'=> 'required|max:120',
-            'last_name'=> 'required|max:120',
-            'class_name'=> 'required|max:3',
+            'first_name'=> 'required|alpha|max:120',
+            'last_name'=> 'required|alpha|max:120',
             'password' => 'required|min:4'
         ]);
 
@@ -112,6 +111,7 @@ class UserController extends Controller{
         $email = $request['email'];
         $password = bcrypt($request['password']);
         $class_name = $request['class_name'];
+        $grade = $request['grade'];
 
         $user = new User();
         $user->email  = $email;
@@ -123,7 +123,7 @@ class UserController extends Controller{
         $class_teacher->first_name = $first_name;
         $class_teacher->last_name = $last_name;
         $class_teacher->class_name = $class_name;
-        $class_teacher->grade = "6";
+        $class_teacher->grade = $grade;
         $class_teacher->user_id = $user->id;
 
         $class_teacher->save();
@@ -134,6 +134,14 @@ class UserController extends Controller{
     }
 
     public function subjectPostSignUp(Request $request){
+
+        $this->validate($request,[
+            'email' => 'required|email|unique:users',
+            'first_name'=> 'required|alpha|max:120',
+            'last_name'=> 'required|alpha|max:120',
+            'password' => 'required|min:4',
+            'subject' => 'required|max:120'
+        ]);
 
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
@@ -159,6 +167,15 @@ class UserController extends Controller{
     }
 
     public function parentPostSignUp(Request $request){
+
+        $this->validate($request,[
+            'email' => 'required|email|unique:users',
+            'first_name'=> 'required|alpha|max:120',
+            'last_name'=> 'required|alpha|max:120',
+            'password' => 'required|min:4',
+            'phone_number' => 'required|Numeric|max:10'
+        ]);
+
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
         $email = $request['email'];
@@ -182,6 +199,12 @@ class UserController extends Controller{
     }
 
     public function captainPostSignUp(Request $request){
+
+        $this->validate($request,[
+            'sport'=> 'required|alpha|max:120',
+            'year' => 'required|Numeric|max:4'
+        ]);
+
         $student_id = $request['student_id'];
         $year = $request['year'];
         $sport = $request['sport'];
@@ -203,6 +226,10 @@ class UserController extends Controller{
 
     public function chpersonPostSignUp(Request $request)
     {
+        $this->validate($request,[
+            'club'=> 'required|alpha|max:120',
+            'year' => 'required|Numeric|max:4'
+        ]);
         $student_id = $request['student_id'];
         $year = $request['year'];
         $club = $request['club'];
