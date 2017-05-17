@@ -19,7 +19,7 @@
             }elseif($userType=="student"){
                 $student = \App\Student::where('user_id',$userID)->first();
                 $name=$student->first_name." ".$student->last_name;
-            }elseif($userType=="capatain"){
+            }elseif($userType=="captain"){
                 $student = \App\Student::where('user_id',$userID)->first();
                 $name=$student->first_name." ".$student->last_name;
                 $userType="captain";
@@ -50,7 +50,7 @@
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="active treeview">
-                <a href="{{route('sports')}}">
+                <a href="">
                     <i class="glyphicon glyphicon-knight"></i> <span>Marks</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         @if(Auth::user()->user_type == "student" or Auth::user()->user_type == "capatain" or Auth::user()->user_type == "chperson" or Auth::user()->user_type == "parent")
@@ -66,7 +66,7 @@
 
             </li>
             <li class="active treeview">
-                <a href="{{route('clubs')}}">
+                <a href="">
                     <i class="glyphicon glyphicon-knight"></i> <span>Sport</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         <li><a href="{{route('sports')}}"><i class="fa fa-circle-o"></i> News</a></li>
@@ -106,12 +106,35 @@
                 <li class="active treeview">
                     <a href="{{route('reg_user')}}">
                         <i class="glyphicon glyphicon-knight"></i> <span>Create Users</span>
-
                     </a>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    <ul class="treeview-menu menu-open" style="display: block;">
+                        <li><a href="{{route('student')}}"><i class="fa fa-circle-o"></i>Student</a></li>
+
+                        <li><a href="{{route('classteacher')}}"><i class="fa fa-circle-o"></i>Class Teacher</a></li>
+                        <li><a href="{{route('subjectteacher')}}"><i class="fa fa-circle-o"></i>Subject Teacher</a></li>
+                        <li><a href="{{route('guardian')}}"><i class="fa fa-circle-o"></i>Parent</a></li>
+                        <li><a href="{{route('admin')}}"><i class="fa fa-circle-o"></i>Admin</a></li>
+                        <li><a href="{{route('captain')}}"><i class="fa fa-circle-o"></i>Captain</a></li>
+                        <li><a href="{{route('chperson')}}"><i class="fa fa-circle-o"></i>Chairperson</a></li>
+
+
+                    </ul>
+
+
 
                 </li>
 
             @endif
+            <li class="active treeview">
+                <a href="{{route('userview')}}">
+                    <i class="glyphicon glyphicon-knight"></i> <span>View Users</span>
+
+                </a>
+
+            </li>
 
 
     </section>

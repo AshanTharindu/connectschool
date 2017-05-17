@@ -111,7 +111,7 @@
                             }elseif($userType=="student"){
                                 $student = \App\Student::where('user_id',$userID)->first();
                                 $name=$student->first_name." ".$student->last_name;
-                            }elseif($userType=="capatain"){
+                            }elseif($userType=="captain"){
                                 $student = \App\Student::where('user_id',$userID)->first();
                                 $name=$student->first_name." ".$student->last_name;
                                 $userType="captain";

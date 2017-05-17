@@ -19,12 +19,22 @@ Route::group(['middleware' => ['web']], function(){
         return view('welcome');
     })->name('welcome');;
 
+
+
 //    route for dashboard view
     Route::get('/dashboard',[
 
         'uses' => 'UserController@getDashboard',
         'as' => 'dashboard',
         'middleware' => 'auth'
+
+    ]);
+
+    Route::get('/userview',[
+
+        'uses' => 'UserController@getUserView',
+        'as' => 'userview'
+
 
     ]);
 
@@ -144,6 +154,36 @@ Route::group(['middleware' => ['web']], function(){
     Route::get('/reg_user', function () {
         return view('reg_user');
     })->name('reg_user');
+
+    Route::get('/student', function () {
+        return view('student');
+    })->name('student');
+
+    Route::get('/classteacher', function () {
+        return view('ClassTeacher');
+    })->name('classteacher');
+
+    Route::get('/subjectteacher', function () {
+        return view('subjectteacher');
+    })->name('subjectteacher');
+
+    Route::get('/guardian', function () {
+        return view('guardian');
+    })->name('guardian');
+
+    Route::get('/admin', function () {
+        return view('admin');
+    })->name('admin');
+
+    Route::get('/captain', function () {
+        return view('captain');
+    })->name('captain');
+
+    Route::get('/chperson', function () {
+        return view('chperson');
+    })->name('chperson');
+
+
 
 
 //    route for user logout

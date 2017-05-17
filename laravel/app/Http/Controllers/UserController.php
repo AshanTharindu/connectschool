@@ -89,6 +89,7 @@ class UserController extends Controller{
         $admin = new Admin();
         $admin->first_name = $first_name;
         $admin->last_name = $last_name;
+        $admin->user_id = $user->id;
         $admin->save();
 
 
@@ -173,7 +174,7 @@ class UserController extends Controller{
             'first_name'=> 'required|alpha|max:120',
             'last_name'=> 'required|alpha|max:120',
             'password' => 'required|min:4',
-            'phone_number' => 'required|Numeric|max:10'
+            'phone_number' => 'required|Numeric|min:10'
         ]);
 
         $first_name = $request['first_name'];
@@ -202,7 +203,7 @@ class UserController extends Controller{
 
         $this->validate($request,[
             'sport'=> 'required|alpha|max:120',
-            'year' => 'required|Numeric|max:4'
+            'year' => 'required|Numeric'
         ]);
 
         $student_id = $request['student_id'];
@@ -211,7 +212,7 @@ class UserController extends Controller{
         $student = Student::where('id',$student_id)->first();
         $user_id =$student->user_id;
         $user = User::where('id',$user_id)->first();
-         $user->user_type = "capatain";
+         $user->user_type = "captain";
          $user->save();
 
          $captain = new Captain();
@@ -228,7 +229,7 @@ class UserController extends Controller{
     {
         $this->validate($request,[
             'club'=> 'required|alpha|max:120',
-            'year' => 'required|Numeric|max:4'
+            'year' => 'required|Numeric'
         ]);
         $student_id = $request['student_id'];
         $year = $request['year'];
@@ -273,5 +274,11 @@ class UserController extends Controller{
         Auth::logout();
 
         return redirect()->route('welcome');
+    }
+
+    public function getUserView(){
+
+        $user = User::all();
+        return view('userview',['users' => $user]);
     }
 }
