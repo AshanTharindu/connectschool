@@ -123,6 +123,8 @@ class UserController extends Controller{
         $class_teacher->first_name = $first_name;
         $class_teacher->last_name = $last_name;
         $class_teacher->class_name = $class_name;
+        $class_teacher->grade = "6";
+        $class_teacher->user_id = $user->id;
 
         $class_teacher->save();
 
@@ -137,7 +139,7 @@ class UserController extends Controller{
         $last_name = $request['last_name'];
         $email = $request['email'];
         $password = bcrypt($request['password']);
-        $subject_name = $request['subject_name'];
+        $subject = $request['subject'];
 
         $user = new User();
         $user->email  = $email;
@@ -148,7 +150,8 @@ class UserController extends Controller{
         $subect_teacher = new SubjectTeacher();
         $subect_teacher->first_name = $first_name;
         $subect_teacher->last_name = $last_name;
-        $subect_teacher->class_name = $subject_name;
+        $subect_teacher->subject = $subject;
+        $subect_teacher->user_id = $user->id;
 
         $subect_teacher->save();
 
@@ -172,6 +175,7 @@ class UserController extends Controller{
         $guradian->first_name= $first_name;
         $guradian->last_name= $last_name;
         $guradian->phone_number= $phone_number;
+        $guradian->user_id = $user->id;
         $guradian->save();
 
         return redirect()->back();

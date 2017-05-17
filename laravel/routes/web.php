@@ -111,10 +111,6 @@ Route::group(['middleware' => ['web']], function(){
     ]);
 
 
-    Route::get('/marksView', function () {
-        return view('marksView');
-    })->name('marksView');
-
     Route::get('/marksView',[
 
         'uses' => 'MarksController@getViewMarks',
@@ -127,9 +123,14 @@ Route::group(['middleware' => ['web']], function(){
         return view('enterMarks');
     })->name('enterMarks');
 
-    Route::get('/messages', function () {
-        return view('messages');
-    })->name('messages');
+
+
+    Route::get('/messages',[
+
+        'uses' => 'MessageController@getMessages',
+        'as' => 'messages'
+
+    ]);
 
     Route::get('/reg_user', function () {
         return view('reg_user');

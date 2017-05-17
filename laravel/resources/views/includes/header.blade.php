@@ -98,16 +98,49 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <?php
+                            $name = "";
+                            $userID= Auth::user()->id;
+                            $userType = Auth::user()->user_type;
+                            if($userType=="admin"){
+                                $admin = \App\Admin::where('user_id',$userID)->first();
+                                $name = $admin->first_name." ".$admin->last_name;
+                            }elseif($userType=="parent"){
+                                $guardian = \App\Guardian::where('user_id',$userID)->first();
+                                $name = $guardian->first_name." ".$guardian->last_name;
+                            }elseif($userType=="student"){
+                                $student = \App\Student::where('user_id',$userID)->first();
+                                $name=$student->first_name." ".$student->last_name;
+                            }elseif($userType=="capatain"){
+                                $student = \App\Student::where('user_id',$userID)->first();
+                                $name=$student->first_name." ".$student->last_name;
+                                $userType="captain";
 
-                        <span class="hidden-xs">Ashan Tharindu</span>
+                            }elseif($userType=="chperson"){
+                                $student = \App\Student::where('user_id',$userID)->first();
+                                $name=$student->first_name." ".$student->last_name;
+
+                            }elseif($userType=="class_teacher"){
+                                $classTeacher = \App\ClassTeacher::where('user_id',$userID)->first();
+                                $name=$classTeacher->first_name." ".$classTeacher->last_name;
+
+
+                            }elseif($userType=="subject_teacher"){
+                                $subjectTeacher = \App\SubjectTeacher::where('user_id',$userID)->first();
+                                $name=$subjectTeacher->first_name." ".$subjectTeacher->last_name;
+
+                            }
+                        ?>
+
+                        <span class="hidden-xs">{{$name}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
 
                             <p>
-                                Ashan Tharindu - Student
-                                <small>Member since Nov. 2012</small>
+                                {{Auth::user()->email}}
+                                <small>{{$userType}}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->

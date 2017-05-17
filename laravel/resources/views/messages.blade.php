@@ -15,7 +15,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label>New Message</label>
-                <select class="form-control">
+                <select class="form-control" id="user" name="user">
                     <option>user1</option>
                     <option>user2</option>
                     <option>user3</option>

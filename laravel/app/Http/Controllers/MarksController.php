@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\MarkSheet;
+use App\Guardian;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,12 +36,26 @@ class MarksController extends Controller
     }
 
     public function getViewMarks(Request $request){
-        $grade = $request['grade'];
-        $term = $request['term'];
-        $student = Student::where('user_id',$request->user()->id)->first();
 
-        $marksheet = DB::select('select * from mark_sheets where student_id = ?', [$student->id]);
-        /*$marksheet = MarkSheet::where('student_id',3)->get()   ;*/
+        $userType = $request->user()->user_type;
+
+
+
+        if($userType =="student" or $userType =="capatain" or $userType =="chperson"){
+            $student = Student::where('user_id',$request->user()->id)->first();
+
+            $marksheet = DB::select('select * from mark_sheets where student_id = ?', [$student->id]);
+
+        }elseif($userType =="parent"){
+            $guardian = Guardian::where('user_id',$request->user()->id)->first();
+            echo $request->user()->id;
+            $student = Student::where('guardian_id',$guardian->id)->first();
+            $marksheet = DB::select('select * from mark_sheets where student_id = ?', [$student->id]);
+        }
+
+
+
+
         return view('marksView',['marksheets' => $marksheet]);
 
 

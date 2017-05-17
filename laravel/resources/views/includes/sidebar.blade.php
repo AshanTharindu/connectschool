@@ -6,22 +6,46 @@
             <div class="pull-left image">
                 <img src="" class="img-circle" alt="User Image">
             </div>
+            <?php
+            $name = "";
+            $userID= Auth::user()->id;
+            $userType = Auth::user()->user_type;
+            if($userType=="admin"){
+                $admin = \App\Admin::where('user_id',$userID)->first();
+                $name = $admin->first_name." ".$admin->last_name;
+            }elseif($userType=="parent"){
+                $guardian = \App\Guardian::where('user_id',$userID)->first();
+                $name = $guardian->first_name." ".$guardian->last_name;
+            }elseif($userType=="student"){
+                $student = \App\Student::where('user_id',$userID)->first();
+                $name=$student->first_name." ".$student->last_name;
+            }elseif($userType=="capatain"){
+                $student = \App\Student::where('user_id',$userID)->first();
+                $name=$student->first_name." ".$student->last_name;
+                $userType="captain";
+
+            }elseif($userType=="chperson"){
+                $student = \App\Student::where('user_id',$userID)->first();
+                $name=$student->first_name." ".$student->last_name;
+
+            }elseif($userType=="class_teacher"){
+                $classTeacher = \App\ClassTeacher::where('user_id',$userID)->first();
+                $name=$classTeacher->first_name." ".$classTeacher->last_name;
+
+
+            }elseif($userType=="subject_teacher"){
+                $subjectTeacher = \App\SubjectTeacher::where('user_id',$userID)->first();
+                $name=$subjectTeacher->first_name." ".$subjectTeacher->last_name;
+
+            }
+            ?>
+
             <div class="pull-left info">
-                <p>Ashan Tharindu</p>
+                <p>{{$name}}</p>
 
             </div>
         </div>
-        <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
+
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
@@ -29,10 +53,13 @@
                 <a href="{{route('sports')}}">
                     <i class="glyphicon glyphicon-knight"></i> <span>Marks</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
-                        <li><a href="{{route('marksView')}}"><i class="fa fa-circle-o"></i> View Marks</a></li>
-                        @if(Auth::user()->user_type == "class_teacher" or "admin")
+                        @if(Auth::user()->user_type == "student" or Auth::user()->user_type == "capatain" or Auth::user()->user_type == "chperson" or Auth::user()->user_type == "parent")
+                            <li><a href="{{route('marksView')}}"><i class="fa fa-circle-o"></i> View Marks</a></li>
+                        @endif
+                        @if(Auth::user()->user_type == "class_teacher" or Auth::user()->user_type == "subject_teacher")
                             <li><a href="{{route('enterMarks')}}"><i class="fa fa-circle-o"></i> Enter Marks</a></li>
                         @endif
+
                     </ul>
 
                 </a>
@@ -43,7 +70,7 @@
                     <i class="glyphicon glyphicon-knight"></i> <span>Sport</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         <li><a href="{{route('sports')}}"><i class="fa fa-circle-o"></i> News</a></li>
-                        @if(Auth::user()->user_type == "student" or "captain")
+                        @if(Auth::user()->user_type == "captain")
                             <li><a href="{{route('spost')}}"><i class="fa fa-circle-o"></i> Add Event</a></li>
                         @endif
                     </ul>
