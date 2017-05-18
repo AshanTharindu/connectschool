@@ -135,19 +135,9 @@ Route::group(['middleware' => ['web']], function(){
 
 
 
-    Route::get('/messages',[
 
-        'uses' => 'MessageController@getMessages',
-        'as' => 'messages'
 
-    ]);
 
-    //send messages
-    Route::post('/sendMessage', [
-        'uses' => 'MessageController@postSendMessage',
-        'as' => 'sendMessage'
-
-    ]);
 
 
 
@@ -227,6 +217,28 @@ Route::group(['middleware' => ['web']], function(){
         'as' => 'fetchmarks'
 
     ]);
+
+
+    //send messages
+    Route::get('/sendnotes', [
+        'uses' => 'MessageController@SendMessages',
+        'as' => 'sendnotes'
+
+    ]);
+
+    Route::post('/send', [
+        'uses' => 'MessageController@postSendMessage',
+        'as' => 'send'
+
+    ]);
+
+    Route::get('/viewwnotes', [
+        'uses' => 'MessageController@getViewMessages',
+        'as' => 'viewnotes'
+
+    ]);
+
+
 
 
 

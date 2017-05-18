@@ -68,6 +68,7 @@
                     <option>Religion</option>
                     <option>Music</option>
                 </select>
+                <input type="hidden" id="msid" name="msid" value="">
             </div>
 
 
@@ -158,6 +159,13 @@
     </form>
     <script>
         function findRank(){
+
+            var msid = $('#year').val()+$('#term').val()+$('#grade').val()+$('#classname').val()+$('#subject').val();
+            console.log(msid);
+            document.getElementById("msid").value = msid;
+
+
+
             //enterd marks will be added to the array
             var rawmarks =[];
             var dupmarks=[];
@@ -185,14 +193,14 @@
                     ranklist[i]= rank;
                 }
                 pre = markssorted[i];
-                console.log(rank);
+                //console.log(rank);
             }
 
             for(var i = 0; i<dupmarks.length;i++){
 
                     var value = markssorted.indexOf(dupmarks[i]);
-                    console.log(dupmarks[i]);
-                    console.log(ranklist[value]);
+                    //console.log(dupmarks[i]);
+                    //console.log(ranklist[value]);
                     document.getElementById((i*4+2).toString()).innerHTML = ranklist[value].toString();
                     document.getElementById((i*4+3).toString()).value = ranklist[value].toString();
 

@@ -95,8 +95,21 @@
 
             </li>
             <li class="active treeview">
-                <a href="{{route('messages')}}">
+                <a href="">
+
                     <i class="glyphicon glyphicon-knight"></i> <span>Messages</span>
+
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    <ul class="treeview-menu menu-open" style="display: block;">
+                        <li><a href="{{route('sendnotes')}}"><i class="fa fa-circle-o"></i>Send</a></li>
+
+                        <li><a href="{{route('viewnotes')}}"><i class="fa fa-circle-o"></i>view</a></li>
+
+
+
+                    </ul>
 
                 </a>
 

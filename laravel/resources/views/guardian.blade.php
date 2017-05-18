@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    create guadian
+    create guardian
 @endsection
 
 @section('heading')
