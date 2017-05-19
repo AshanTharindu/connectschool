@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-    view notes
+    sent notes
 @endsection
 
 @section('heading')
-    View Notes
+    Sent Notes
 @endsection
 
 
@@ -18,7 +18,7 @@
 
             console.log(mid);
             console.log(mid['id']);
-            document.getElementById("name").innerHTML =mid['sender_name'];
+            document.getElementById("name").innerHTML =mid['receiver_name'];
             document.getElementById("body").innerHTML = mid['body'];
             document.getElementById("time").innerHTML = mid['updated_at'];
             document.getElementById("subject").innerHTML = mid['subject'];
@@ -91,7 +91,7 @@
                                                  style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
                                         </div>
                                     </td>
-                                    <td class="mailbox-name"><a href="read-mail.html">{{$message->sender_name}}</a></td>
+                                    <td class="mailbox-name"><a href="read-mail.html">{{$message->receiver_name}}</a></td>
                                     <td class="mailbox-subject"><b>{{$message->subject}}</b>
                                     </td>
                                     <td class="mailbox-attachment">{{$message->updated_at}}</td>
@@ -105,7 +105,7 @@
 
 
                             </form>
-                                                    @endforeach
+                        @endforeach
 
                         </tbody>
                     </table>

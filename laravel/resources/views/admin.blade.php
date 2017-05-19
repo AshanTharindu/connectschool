@@ -35,34 +35,37 @@
         </div>
         <!-- /.box-header -->
         <!-- form start admin -->
-    <form action="{{route('adminsignup')}}" method="post">
-        <div class="box-body">
-            <div class="form-group {{$errors->has('first_name') ? 'has-error' : ''}}">
-                <label for="exampleInputEmail1">First Name</label>
-                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="first name" value="{{Request::old('first_name')}}">
+        <form action="{{route('adminsignup')}}" method="post">
+            <div class="box-body">
+                <div class="form-group {{$errors->has('first_name') ? 'has-error' : ''}}">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="first name"
+                           value="{{Request::old('first_name')}}">
+
+                </div>
+                <div class="form-group {{$errors->has('last_name') ? 'has-error' : ''}}">
+                    <label for="exampleInputEmail1">Last name</label>
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last name"
+                           value="{{Request::old('last_name')}}">
+                </div>
+
+                <div class="form-group {{$errors->has('email') ? 'has-error' : ''}}">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
+                           value="{{Request::old('email')}}">
+                </div>
+                <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
 
             </div>
-            <div class="form-group {{$errors->has('last_name') ? 'has-error' : ''}}">
-                <label for="exampleInputEmail1">Last name</label>
-                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last name" value="{{Request::old('last_name')}}">
-            </div>
+            <!-- /.box-body -->
 
-            <div class="form-group {{$errors->has('email') ? 'has-error' : ''}}">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{Request::old('email')}}">
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                <input type="hidden" name="_token" value="{{Session::token()}}">
             </div>
-            <div class="form-group {{$errors->has('password') ? 'has-error' : ''}}">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-            </div>
-
-        </div>
-        <!-- /.box-body -->
-
-        <div class="box-footer">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
-            <input type="hidden" name = "_token" value = "{{Session::token()}}">
-        </div>
-    </form>
+        </form>
     </div>
 @endsection

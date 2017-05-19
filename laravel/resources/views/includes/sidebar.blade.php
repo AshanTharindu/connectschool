@@ -8,34 +8,34 @@
             </div>
             <?php
             $name = "";
-            $userID= Auth::user()->id;
+            $userID = Auth::user()->id;
             $userType = Auth::user()->user_type;
-            if($userType=="admin"){
-                $admin = \App\Admin::where('user_id',$userID)->first();
-                $name = $admin->first_name." ".$admin->last_name;
-            }elseif($userType=="parent"){
-                $guardian = \App\Guardian::where('user_id',$userID)->first();
-                $name = $guardian->first_name." ".$guardian->last_name;
-            }elseif($userType=="student"){
-                $student = \App\Student::where('user_id',$userID)->first();
-                $name=$student->first_name." ".$student->last_name;
-            }elseif($userType=="captain"){
-                $student = \App\Student::where('user_id',$userID)->first();
-                $name=$student->first_name." ".$student->last_name;
-                $userType="captain";
+            if ($userType == "admin") {
+                $admin = \App\Admin::where('user_id', $userID)->first();
+                $name = $admin->first_name . " " . $admin->last_name;
+            } elseif ($userType == "parent") {
+                $guardian = \App\Guardian::where('user_id', $userID)->first();
+                $name = $guardian->first_name . " " . $guardian->last_name;
+            } elseif ($userType == "student") {
+                $student = \App\Student::where('user_id', $userID)->first();
+                $name = $student->first_name . " " . $student->last_name;
+            } elseif ($userType == "captain") {
+                $student = \App\Student::where('user_id', $userID)->first();
+                $name = $student->first_name . " " . $student->last_name;
+                $userType = "captain";
 
-            }elseif($userType=="chperson"){
-                $student = \App\Student::where('user_id',$userID)->first();
-                $name=$student->first_name." ".$student->last_name;
+            } elseif ($userType == "chperson") {
+                $student = \App\Student::where('user_id', $userID)->first();
+                $name = $student->first_name . " " . $student->last_name;
 
-            }elseif($userType=="class_teacher"){
-                $classTeacher = \App\ClassTeacher::where('user_id',$userID)->first();
-                $name=$classTeacher->first_name." ".$classTeacher->last_name;
+            } elseif ($userType == "class_teacher") {
+                $classTeacher = \App\ClassTeacher::where('user_id', $userID)->first();
+                $name = $classTeacher->first_name . " " . $classTeacher->last_name;
 
 
-            }elseif($userType=="subject_teacher"){
-                $subjectTeacher = \App\SubjectTeacher::where('user_id',$userID)->first();
-                $name=$subjectTeacher->first_name." ".$subjectTeacher->last_name;
+            } elseif ($userType == "subject_teacher") {
+                $subjectTeacher = \App\SubjectTeacher::where('user_id', $userID)->first();
+                $name = $subjectTeacher->first_name . " " . $subjectTeacher->last_name;
 
             }
             ?>
@@ -107,6 +107,7 @@
 
                         <li><a href="{{route('viewnotes')}}"><i class="fa fa-circle-o"></i>view</a></li>
 
+                        <li><a href="{{route('viewsendnotes')}}"><i class="fa fa-circle-o"></i>Sent Notes</a></li>
 
 
                     </ul>
@@ -135,7 +136,6 @@
 
 
                     </ul>
-
 
 
                 </li>

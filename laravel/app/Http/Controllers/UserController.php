@@ -133,7 +133,7 @@ class UserController extends Controller{
         return redirect()->back();
 
     }
-
+//    create  subject method
     public function subjectPostSignUp(Request $request){
 
         $this->validate($request,[
@@ -167,6 +167,7 @@ class UserController extends Controller{
         return redirect()->back();
     }
 
+    //    create  parent method
     public function parentPostSignUp(Request $request){
 
         $this->validate($request,[
@@ -199,6 +200,7 @@ class UserController extends Controller{
         return redirect()->back();
     }
 
+    //    create captain method
     public function captainPostSignUp(Request $request){
 
         $this->validate($request,[
@@ -225,6 +227,7 @@ class UserController extends Controller{
 
     }
 
+    //create chairperson method
     public function chpersonPostSignUp(Request $request)
     {
         $this->validate($request,[
@@ -276,6 +279,7 @@ class UserController extends Controller{
         return redirect()->route('welcome');
     }
 
+    //view the users
     public function getUserView(){
 
         $user = User::all();

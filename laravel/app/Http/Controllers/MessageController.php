@@ -132,7 +132,7 @@ class MessageController extends Controller
 
         $message = Message::where('user_id', $user->id)->get();
 
-        return view('viewSendNote', ['messages' => $message]);
+        return view('sentnotes', ['messages' => $message]);
 
 
     }

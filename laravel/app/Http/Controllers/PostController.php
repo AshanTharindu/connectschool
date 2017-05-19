@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller{
 
+    //create posts
     public function postCreatePost(Request $request){
 
         $post = new Post();
@@ -29,6 +30,7 @@ class PostController extends Controller{
 
     }
 
+    //view posts
     public function show(){
 
         $post = Post::all();

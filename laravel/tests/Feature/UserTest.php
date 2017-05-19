@@ -78,7 +78,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    //login page testing
+    //dashboard testing
     public function testDashboardPage()
     {
         $response = $this->get('/dashboard');
