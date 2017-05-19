@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web']], function(){
 
     ]);
 
+    //route for user view
     Route::get('/userview',[
 
         'uses' => 'UserController@getUserView',
@@ -60,13 +61,14 @@ Route::group(['middleware' => ['web']], function(){
         'as' => 'classsignup'
 
     ]);
-
+//    route for create subject teacher
     Route::post('/subjectsignup', [
         'uses' => 'UserController@subjectPostSignUp',
         'as' => 'subjectsignup'
 
     ]);
 
+    //    route for create parents
 
     Route::post('/parentsignup', [
         'uses' => 'UserController@parentPostSignUp',
@@ -74,21 +76,26 @@ Route::group(['middleware' => ['web']], function(){
 
     ]);
 
+    //    route for register captains
     Route::post('/captainsignup', [
         'uses' => 'UserController@captainPostSignUp',
         'as' => 'captainsignup'
 
     ]);
 
+    //    route for register chair persons
     Route::post('/chpersonsignup', [
         'uses' => 'UserController@chpersonPostSignUp',
         'as' => 'chpersonsignup'
 
     ]);
 
+    //Adding posts
+
     Route::post('/createpost', [
         'uses' => 'PostController@postCreatePost',
-        'as' => 'createpost'
+        'as' => 'createpost',
+        'middleware' => 'auth'
 
     ]);
 
@@ -106,7 +113,6 @@ Route::group(['middleware' => ['web']], function(){
 //    routes for other main menu itema
 
 
-
     Route::get('/sports',[
 
         'uses' => 'PostController@show',
@@ -121,14 +127,17 @@ Route::group(['middleware' => ['web']], function(){
     ]);
 
 
+    //route for view marks
     Route::get('/marksView',[
 
         'uses' => 'MarksController@getViewMarks',
-        'as' => 'marksView'
+        'as' => 'marksView',
+        'middleware' => 'auth'
 
 
     ]);
 
+    //route for enter marks
     Route::get('/enterMarks', function () {
         return view('enterMarks');
     })->name('enterMarks');
@@ -139,6 +148,7 @@ Route::group(['middleware' => ['web']], function(){
 
 
 
+    //routes for getting user creation pages
 
 
     Route::get('/reg_user', function () {
@@ -182,6 +192,7 @@ Route::group(['middleware' => ['web']], function(){
         'as' => 'logout'
     ]);
 
+    //view post
     Route::get('/spost',function(){
         return view('spost');
     })->name('spost');
@@ -219,13 +230,15 @@ Route::group(['middleware' => ['web']], function(){
     ]);
 
 
-    //send messages
+    //send messages view
     Route::get('/sendnotes', [
         'uses' => 'MessageController@SendMessages',
         'as' => 'sendnotes'
 
     ]);
 
+
+    //send messages
     Route::post('/send', [
         'uses' => 'MessageController@postSendMessage',
         'as' => 'send'
@@ -237,6 +250,13 @@ Route::group(['middleware' => ['web']], function(){
         'as' => 'viewnotes'
 
     ]);
+
+    Route::get('/viewsendwnotes', [
+        'uses' => 'MessageController@getSendMessages',
+        'as' => 'viewsendnotes'
+
+    ]);
+
 
 
 

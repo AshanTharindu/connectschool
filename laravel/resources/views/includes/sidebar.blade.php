@@ -53,7 +53,7 @@
                 <a href="">
                     <i class="glyphicon glyphicon-knight"></i> <span>Marks</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
-                        @if(Auth::user()->user_type == "student" or Auth::user()->user_type == "capatain" or Auth::user()->user_type == "chperson" or Auth::user()->user_type == "parent")
+                        @if(Auth::user()->user_type == "student" or Auth::user()->user_type == "captain" or Auth::user()->user_type == "chperson" or Auth::user()->user_type == "parent")
                             <li><a href="{{route('marksView')}}"><i class="fa fa-circle-o"></i> View Marks</a></li>
                         @endif
                         @if(Auth::user()->user_type == "class_teacher" or Auth::user()->user_type == "subject_teacher")
@@ -70,7 +70,7 @@
                     <i class="glyphicon glyphicon-knight"></i> <span>Sport</span>
                     <ul class="treeview-menu menu-open" style="display: block;">
                         <li><a href="{{route('sports')}}"><i class="fa fa-circle-o"></i> News</a></li>
-                        @if(Auth::user()->user_type == "capatain")
+                        @if(Auth::user()->user_type == "captain")
                             <li><a href="{{route('spost')}}"><i class="fa fa-circle-o"></i> Add Event</a></li>
                         @endif
                     </ul>

@@ -21,7 +21,7 @@
                         <div class="box-header with-border">
                             <i class="fa fa-text-width"></i>
 
-                            <h3 class="box-title">Science Day</h3>
+                            <h3 class="box-title"></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body clearfix">

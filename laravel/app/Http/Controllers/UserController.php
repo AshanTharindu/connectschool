@@ -279,6 +279,13 @@ class UserController extends Controller{
     public function getUserView(){
 
         $user = User::all();
-        return view('userview',['users' => $user]);
+        $student = Student::all();
+        $subjectteacher = SubjectTeacher::all();
+        $classteacher = ClassTeacher::all();
+        $guardian = Guardian::all();
+        $admin = Admin::all();
+        $captain = Captain::all();
+        $chperson = Chperson::all();
+        return view('userview',['users' => $user],['students' => $student],['subjectteachers' => $subjectteacher],['classteachers' => $classteacher],['guardians' => $guardian],['admin' => $admin],['captains' => $captain],['chpersons' => $chperson]);
     }
 }

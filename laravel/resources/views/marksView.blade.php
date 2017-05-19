@@ -49,7 +49,7 @@
         <div class="row">
             <div class="col-md-3">
                 <button type="submit" class="btn btn-block btn-primary">Done</button>
-                <input type="hidden" name = "_token" value = "{{Session::token()}}">
+                <input type="hidden" name="_token" value="{{Session::token()}}">
             </div>
 
         </div>
@@ -68,9 +68,27 @@
             <!-- /.box-header -->
 
             <div class="box-body">
-                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap"><div class="row"><div class="col-md-4"></div><div class="col-md-4"></div></div><div class="row"><div class="col-md-10"><table id="example2" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                                   aria-describedby="example2_info">
                                 <thead>
-                                <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Subject</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Marks</th><th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Rank</th>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                        colspan="1" aria-sort="ascending"
+                                        aria-label="Rendering engine: activate to sort column descending">Subject
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Browser: activate to sort column ascending">Marks
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1"
+                                        aria-label="Platform(s): activate to sort column ascending">Rank
+                                    </th>
                                 </thead>
                                 <tbody>
                                 @foreach($marksheets as $marksheet)
@@ -100,7 +118,8 @@
 
                     <div class="table-responsive">
                         <table class="table">
-                            <tbody><tr>
+                            <tbody>
+                            <tr>
                                 <th style="width:50%">Total</th>
                                 @php
                                 $total = 0;
@@ -112,7 +131,7 @@
                                 }
 
                                 if($subjects>0){
-                                    $average = $total/$subjects;
+                                $average = $total/$subjects;
                                 }
                                 @endphp
                                 <td>{{$total}}</td>
@@ -123,14 +142,14 @@
 
                                 <td>{{$average}}</td>
                             </tr>
-                            <tr>
-                                <th>class Average</th>
-                                <td>41</td>
-                            </tr>
 
-                            </tbody></table>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- /.col -->
             </div>
+        </div>
+    </div>
 @endsection

@@ -16,10 +16,18 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-       // $response = $this->get('/');
 
-       // $response->assertStatus(200);
-        //$this->visit('/dashboard');
+        $this->assertTrue(true);
 
     }
+
+    public function testAdmin()
+    {
+        $admin=User::where('type','admin')->get();
+        $count=$admin->count();
+        $this->assertGreaterThan(0,$count);
+    }
+
+
+
 }

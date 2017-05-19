@@ -32,7 +32,13 @@
                 <div class="box-body clearfix">
                     <blockquote class="pull-right">
                         <p>{{$post->body}}</p>
-                        <small><cite title="Source Title"></cite></small>
+
+                        @php
+                        $captain = \App\Captain::where('id',$post->captain_id)->first();
+                        $student = \App\Student:: where('user_id',$captain->user_id)->first();
+                        $name = $student->first_name." ".$student->last_name;
+                        @endphp
+                        <small><cite title="Source Title"></cite>{{$name}}</small>
                     </blockquote>
                 </div>
 

@@ -12,7 +12,7 @@ class PostController extends Controller{
 
         $post = new Post();
         $post->body = $request['body'];
-        $captain = Captain::where('user_id',$request->user()->id)->first();
+        $captain = \App\Captain::where('user_id',$request->user()->id)->first();
 
         $captain->posts()->save($post);
 
